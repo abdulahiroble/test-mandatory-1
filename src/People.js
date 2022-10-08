@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 class People {
 
     name
@@ -17,13 +15,23 @@ class People {
     }
 
     fullNameAndGender() {
-        return this.name + this.surname + this.gender + this.cpr + this.birthday
+        return this.name, this.surname, this.gender
     }
+
+    birthday() {
+        return this.birthday
+    }
+
+    cprNumber() {
+        return this.cpr
+    }
+
 
 }
 
 const people = new People()
 
-// people.readFromFile()
+people.fullNameAndGender()
+people.cprNumber()
 
 module.exports = People;
