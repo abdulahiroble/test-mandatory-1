@@ -1,32 +1,83 @@
 class People {
 
-    name
-    surname
-    gender
-    cpr
-    birthday
+    _name
+    _surname
+    _gender
+    _cpr
+    _birthday
+    _friends = []
 
     constructor(name, surname, gender, cpr, birthday) {
-        this.name = name
-        this.surname = surname
-        this.gender = gender
-        this.cpr = cpr
-        this.birthday = birthday
+        this._name = name
+        this._surname = surname
+        this._gender = gender
+        this._cpr = cpr
+        this._birthday = birthday;
     }
 
     fullNameAndGender() {
-        return this.name, this.surname, this.gender
+        return this._name, this._surname, this._gender
     }
 
     birthday() {
-        return this.birthday
+        return this._birthday
     }
 
     cprNumber() {
-        return this.cpr
+        return this._cpr
     }
 
+    // #region GETTER & SETTER
 
+    setName(name){
+        this._name = name;
+    }
+
+    getName(){
+        return this._name;
+    }
+
+    setSurname(surname){
+        this._surname = surname;
+    }
+
+    getSurname(){
+        return this._surname;
+    }
+
+    setGender(gender){
+        this._gender = gender;
+    }
+    
+    getGender(){
+        return this._gender;
+    }
+
+    setCpr(cpr){
+        this._cpr = cpr;
+    }
+
+    getCpr(){
+        return this._cpr;
+    }
+
+    setBirthday(birthday){
+        this._birthday = birthday;
+    }
+
+    getBirthday(){
+        return this._birthday;
+    }
+
+    setFriends(friends){
+        this._friends.push(friends);
+    }
+
+    getFriends(){
+        return this._friends;
+    }
+
+    // #endregion
 }
 
 const people = new People()
