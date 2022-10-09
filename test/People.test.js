@@ -4,7 +4,7 @@ const list = require("../src/main")
 
 const frank = new People("Frank", "Lorenzen", "male", "1234578911", "19/04/1996");
 const jasmine = new People("jasmine", "Lorenzen", "male", "12345789100000", "19/04/1996");
-const a = new People("a", "Lorenzen", "female","12345678910","09/04/1996" )
+const a = new People("a", "Lorenzen", "female", "12345678910", "09/04/1996")
 
 let cases = [[frank, true], [jasmine, false]]
 
@@ -20,7 +20,7 @@ describe('Validate CPR Length', () => {
     )
 })
 
-cases = [[a, 1, false],[a, 2, true],[a, 11, true],[a, 10, true], [a, 5, true], [a, 0, false]]
+cases = [[a, 1, false], [a, 2, true], [a, 11, true], [a, 10, true], [a, 5, true], [a, 0, false]]
 
 describe('Validate different name lengths', () => {
     test.each(cases)(
@@ -28,11 +28,11 @@ describe('Validate different name lengths', () => {
         (obj, valueLength, expectedResult) => {
             console.log(obj, expectedResult)
             let result
-            if(obj.getName().length > valueLength && valueLength < 2){
-               result = false
-            }else if(obj.getName().length >= valueLength && valueLength >= 11){
-               result = false
-            }else{
+            if (obj.getName().length >= valueLength && valueLength < 2) {
+                result = false
+            } else if (obj.getName().length >= valueLength && valueLength >= 11) {
+                result = false
+            } else {
                 result = true
             }
             expect(result).toEqual(expectedResult);
