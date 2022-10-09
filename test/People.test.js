@@ -28,7 +28,7 @@ describe('Validate different name lengths', () => {
         (obj, valueLength, expectedResult) => {
             console.log(obj, expectedResult)
             let result
-            if(obj.getName().length <= valueLength && valueLength < 2){
+            if(obj.getName().length > valueLength && valueLength < 2){
                result = false
             }else if(obj.getName().length >= valueLength && valueLength >= 11){
                result = false
