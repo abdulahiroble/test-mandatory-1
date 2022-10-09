@@ -109,6 +109,7 @@ const functionsToReturn = {
     generateFemaleCPR,
     generateMaleCPR,
     generatePersonInfo,
+    generateFullCPR
 }
 
 module.exports = functionsToReturn;
