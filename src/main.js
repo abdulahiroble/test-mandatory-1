@@ -1,76 +1,81 @@
 const fs = require("fs");
-const People = require('./People')
+const People = require('./People');
+const { readFromFile, addPeopleToArray, generatePersonInfo } = require("./Services");
 
-function readFromFile(name) {
-    let bufferData = fs.readFileSync("./dump/person-names.json").toString()
-    let data = JSON.parse(bufferData);
 
-    let j = 5
-    let peopleArray = [];
+// function readFromFile(name) {
+//     let bufferData = fs.readFileSync("./dump/person-names.json").toString()
+//     let data = JSON.parse(bufferData);
 
-    let randomNumber;
-    for (let i = 0; j > i; i++) {
-        randomNumber = Math.floor(Math.random() * data.persons.length);
-        peopleArray.push(data.persons[randomNumber])
-    }
 
-    // console.log(Math.floor(Math.random() * 10000))
+//     let j = 5
+//     let peopleArray = [];
 
-    // Generate 5 Female last digets of CPR Numbers
-    let randCPRFem = 1000;
-    let randCPRFemArray = [];
+//     let randomNumber;
+//     for (let i = 0; j > i; i++) {
+//         randomNumber = Math.floor(Math.random() * data.persons.length);
+//         peopleArray.push(data.persons[randomNumber])
+//     }
 
-    for (let i = 0; 5 > i; i++) {
-        randCPRFem = randCPRFem + 2;
-        randCPRFemArray.push(randCPRFem);
-        // randCPRFemArray.push(tmpRandCPRFemArray[Math.floor(Math.random() * 5)])
-    }
 
-    // Generate 5 Male last digets of CPR Numbers
-    let randCPRMaleArray = [];
+//     // Generate 5 Female last digets of CPR Numbers
+//     let randCPRFem = 1000;
+//     let randCPRFemArray = [];
 
-    for (let i = 0; 5 > i; i++) {
+//     for (let i = 0; 5 > i; i++) {
+//         randCPRFem = randCPRFem + 2;
+//         randCPRFemArray.push(randCPRFem);
+//     }
 
-        //generated number is even
-        let randNum = 1000 + Math.floor(Math.random() * 100);
-        if (randNum % 2 == 0) {
-            if (randNum == 5) {
-                randNum = randNum - 1;
-            } else {
+//     // Generate 5 Male last digets of CPR Numbers
+//     let randCPRMaleArray = [];
 
-                randNum = randNum + 1;
-            }
-            // console.log(randNum)
+//     for (let i = 0; 5 > i; i++) {
 
-        }
-        randCPRMaleArray.push(randNum);
-    }
-    // console.log("====",randCPRMaleArray)
+//         //generated number is even
+//         let randNum = 1000 + Math.floor(Math.random() * 100);
+//         if (randNum % 2 == 0) {
+//             if (randNum == 5) {
+//                 randNum = randNum - 1;
+//             } else {
 
-    let tDate = randomDate(new Date(0, 1, 2012), new Date())
+//                 randNum = randNum + 1;
+//             }
+    
 
-    personArray = [];
-    for (let i = 0; peopleArray.length > i; i++) {
-        const person = new People(
-            peopleArray[i].name, 
-            peopleArray[i].surname,
-            peopleArray[i].gender,
-        );
-        let date = person.getGender() == "male" ? tDate.toISOString().slice(0, 10).split("-").reverse().join().replace(/,/g, "") + randCPRMaleArray[i] : tDate.toISOString().slice(0, 10).split("-").reverse().join().replace(/,/g, "") + randCPRFemArray[i];
+//         }
+//         randCPRMaleArray.push(randNum);
+//     }
+    
 
-        person.setCpr(date);
+//     let tDate = randomDate(new Date(0, 1, 2012), new Date())
 
-        person.setBirthday(person.getCpr().substring(0, 2) + "/" + person.getCpr().substring(2, 4) + "/" + person.getCpr().substring(4, 8))
+//     personArray = [];
+//     for (let i = 0; peopleArray.length > i; i++) {
+//         const person = new People(
+//             peopleArray[i].name, 
+//             peopleArray[i].surname,
+//             peopleArray[i].gender,
+//         );
+//         let date = person.getGender() == "male" ? tDate.toISOString().slice(0, 10).split("-").reverse().join().replace(/,/g, "") + randCPRMaleArray[i] : tDate.toISOString().slice(0, 10).split("-").reverse().join().replace(/,/g, "") + randCPRFemArray[i];
 
-        personArray.push(person);
-    }
+//         person.setCpr(date);
 
-    // console.log(personArray);
+//         person.setBirthday(person.getCpr().substring(0, 2) + "/" + person.getCpr().substring(2, 4) + "/" + person.getCpr().substring(4, 8))
 
-    return personArray
+//         personArray.push(person);
+//     }
+
+   
+
+//     return personArray
+// }
+// function randomDate(start, end) {
+//     return new Date(start.getTime() + Math.random() * (end.getDate() - start.getDate()));
+// }
+
+function main(){
+    generatePersonInfo(addPeopleToArray(readFromFile,5));
 }
-function randomDate(start, end) {
-    return new Date(start.getTime() + Math.random() * (end.getDate() - start.getDate()));
-}
 
-module.exports = readFromFile();
+module.exports = main();

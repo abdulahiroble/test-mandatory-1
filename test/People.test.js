@@ -1,10 +1,10 @@
 const People = require("../src/People");
-// const services = require("../src/services");
+const Services = require('../src/Services');
 const list = require("../src/main")
 
-const frank = new People("Frank", "Lorenzen", "male", "1234578911", "19/04/1996");
+const frank = new People("Frank", "Lorenzen", "male", Services.generateMaleCPR(1), "19/04/1996",list);
 const jasmine = new People("jasmine", "Lorenzen", "male", "12345789100000", "19/04/1996");
-const a = new People("a", "Lorenzen", "female", "12345678910", "09/04/1996")
+const a = new People("a", "Lorenzen", "female", "12345678910", "09/04/1996");
 
 let cases = [[frank, true], [jasmine, false]]
 
@@ -40,19 +40,4 @@ describe('Validate different name lengths', () => {
 
     )
 })
-
-
-// test("Testing the class", ()=>{
-//     const people = new People("name her", "surname her", "gender her", "cpr her", "birthday her");
-//     // people.name = "HEJ"
-//     console.log(people.getName())
-// })
-
-// test('Return a full name and gender', () => {
-//     const people = new People()
-//     // const peopleName = list.map((test) => people.name == test.name)
-//     const peopleName = list.map((test) => console.log(test.name))
-
-//     expect(people.fullNameAndGender(people.name)).toBe(peopleName)
-// })
 

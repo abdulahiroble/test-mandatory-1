@@ -7,12 +7,13 @@ class People {
     _birthday
     _friends = []
 
-    constructor(name, surname, gender, cpr, birthday) {
+    constructor(name, surname, gender, cpr, birthday, friends) {
         this._name = name
         this._surname = surname
         this._gender = gender
         this._cpr = cpr
-        this._birthday = birthday;
+        this._birthday = birthday
+        this._friends = friends
     }
 
     fullNameAndGender() {
