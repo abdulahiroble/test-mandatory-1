@@ -75,7 +75,7 @@ const { readFromFile, addPeopleToArray, generatePersonInfo } = require("./Servic
 // }
 
 function main(){
-    generatePersonInfo(addPeopleToArray(readFromFile,5));
+   return generatePersonInfo(addPeopleToArray(5));
 }
 
 module.exports = main();

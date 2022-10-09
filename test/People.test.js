@@ -3,7 +3,7 @@ const Services = require('../src/Services');
 const list = require("../src/main")
 
 const frank = new People("Frank", "Lorenzen", "male", Services.generateMaleCPR(1), "19/04/1996",list);
-const jasmine = new People("jasmine", "Lorenzen", "male", "12345789100000", "19/04/1996");
+const jasmine = new People("jasmine", "Lorenzen", "female", Services.generateFemaleCPR(1), "19/04/1996");
 const a = new People("a", "Lorenzen", "female", "12345678910", "09/04/1996");
 
 let cases = [[frank, true], [jasmine, false]]

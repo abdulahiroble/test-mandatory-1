@@ -5,16 +5,17 @@ let list = fs.readFileSync("./dump/person-names.json").toString()
 
 //====READ FROM FILE====
 function readFromFile(){
-    let bufferData = fs.readFileSync(".././dump/person-names.json").toString();
+    let bufferData = fs.readFileSync("./dump/person-names.json").toString();
     let data = JSON.parse(bufferData);
 
     return data;
 }
 
 //====ADD PEOPLE TO ARRAY====
-function addPeopleToArray(data,numbers){
+function addPeopleToArray(numbers){
     let j = numbers;
     let peopleArray = [];
+    let data = readFromFile();
 
     let randomNumber;
     for (let i = 0; j > i; i++) {
@@ -64,7 +65,7 @@ function generatePersonInfo(peopleArray){
     let tDate = randomDate(new Date(0, 1, 2012), new Date())
     let personArray = [];
     let randCPRMaleArray = generateMaleCPR(5);
-    let randCPRFemArray = generateFemaleCPR();
+    let randCPRFemArray = generateFemaleCPR(5);
 
     for (let i = 0; peopleArray.length > i; i++) {
         const person = new People(
@@ -72,10 +73,11 @@ function generatePersonInfo(peopleArray){
             peopleArray[i].surname,
             peopleArray[i].gender,
         );
-        let date = person.getGender() == "male" ?
-            tDate.toISOString().slice(0, 10).split("-").reverse().join().replace(/,/g, "") + randCPRMaleArray[i] 
-        :
-            tDate.toISOString().slice(0, 10).split("-").reverse().join().replace(/,/g, "") + randCPRFemArray[i];
+        let date = person.getGender() == "male" ? 
+         generateFullCPR(tDate, randCPRMaleArray[i])
+         :
+         generateFullCPR(tDate, randCPRFemArray[i])
+        
 
         person.setCpr(date);
         person.setBirthday(person.getCpr().substring(0, 2) + "/" + person.getCpr().substring(2, 4) + "/" + person.getCpr().substring(4, 8))
@@ -83,6 +85,13 @@ function generatePersonInfo(peopleArray){
         personArray.push(person);
     }
     return personArray
+}
+
+function generateFullCPR(tDate, randomCPR){
+    let date = tDate.toISOString().slice(0, 10).split("-").reverse().join().replace(/,/g, "") + randomCPR
+    let date2 = date.slice(5,7)
+    let date3 = date.slice(8)
+    return date.slice(5,7)+ date.slice(8)
 }
 
 //====RANDOM DATE====
