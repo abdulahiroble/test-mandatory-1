@@ -66,32 +66,34 @@ function generatePersonInfo(peopleArray){
     let personArray = [];
     let randCPRMaleArray = generateMaleCPR(5);
     let randCPRFemArray = generateFemaleCPR(5);
-
+    
     for (let i = 0; peopleArray.length > i; i++) {
         const person = new People(
             peopleArray[i].name, 
             peopleArray[i].surname,
             peopleArray[i].gender,
-        );
+            );
+        person.setBirthday(generateBirthday(tDate))
         let date = person.getGender() == "male" ? 
-         generateFullCPR(tDate, randCPRMaleArray[i])
+         generateFullCPR(person.getBirthday(), randCPRMaleArray[i])
          :
-         generateFullCPR(tDate, randCPRFemArray[i])
-        
-
+         generateFullCPR(person.getBirthday(), randCPRFemArray[i])
         person.setCpr(date);
-        person.setBirthday(person.getCpr().substring(0, 2) + "/" + person.getCpr().substring(2, 4) + "/" + person.getCpr().substring(4, 8))
 
         personArray.push(person);
     }
     return personArray
 }
+function generateBirthday(tDate){
+    let date = tDate.toISOString().slice(0, 10).split("-").reverse().join().replace(/,/g, "")
+    date = date.substring(0, 2) + "-" + date.substring(2, 4) + "-" + date.substring(4, 8)
+    return date
+}
 
-function generateFullCPR(tDate, randomCPR){
-    let date = tDate.toISOString().slice(0, 10).split("-").reverse().join().replace(/,/g, "") + randomCPR
-    let date2 = date.slice(5,7)
-    let date3 = date.slice(8)
-    return date.slice(5,7)+ date.slice(8)
+function generateFullCPR(personDate, randomCPR){
+    let date = personDate + randomCPR
+    date = date.substring(0,2) + date.substring(3,5) + date.substring(8,date.length)
+    return date
 }
 
 //====RANDOM DATE====
