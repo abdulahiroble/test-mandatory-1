@@ -1,5 +1,3 @@
-const fs = require("fs");
-const People = require('./People');
 const {addPeopleToArray, generatePersonInfo } = require("./Services");
 
 function main(){
