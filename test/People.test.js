@@ -19,14 +19,13 @@ describe('Validate CPR Length', () => {
     )
 })
 
-cases = [[frank, true], [a, false], [frank, true], [frank, true], [frank, true], [frank, true]]
+cases = [[frank, true], [a, false], [jasmine, true]]
 
 describe('Validate different name lengths', () => {
     test.each(cases)(
         "Given name length in person object between 2-10, return true",
         (obj, expectedResult) => {
             let result
-
             if (obj.getName().length < 2) {
                 result = false
             } else if (obj.getName().length > 10) {
@@ -40,3 +39,7 @@ describe('Validate different name lengths', () => {
     )
 })
 
+test("Test male or female",()=>{
+    let result = frank.getGender() == "male" ? true : false
+    expect(result).toBe(result);
+})
