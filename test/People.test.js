@@ -10,7 +10,7 @@ let cases = [[frank, true], [jasmine, false]]
 
 describe('Validate CPR Length', () => {
     test.each(cases)(
-        "given %p and %p as arguments, returns %p",
+        "Validates each data for cpr length",
         (obj, expectedResult) => {
             const result = obj.getCpr().length == 10;
             expect(result).toEqual(expectedResult);
@@ -19,16 +19,17 @@ describe('Validate CPR Length', () => {
     )
 })
 
-cases = [[a, 1, false], [a, 2, true], [a, 11, true], [a, 10, true], [a, 5, true], [a, 0, false]]
+cases = [[frank, true], [a, false], [frank, true], [frank, true], [frank, true], [frank, true]]
 
 describe('Validate different name lengths', () => {
     test.each(cases)(
         "Given name length in person object between 2-10, return true",
-        (obj, valueLength, expectedResult) => {
+        (obj, expectedResult) => {
             let result
-            if (obj.getName().length >= valueLength && valueLength < 2) {
+
+            if (obj.getName().length < 2) {
                 result = false
-            } else if (obj.getName().length >= valueLength && valueLength >= 11) {
+            } else if (obj.getName().length > 10) {
                 result = false
             } else {
                 result = true
